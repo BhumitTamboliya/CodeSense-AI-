@@ -1,0 +1,171 @@
+.review-page { min-height:100vh; }
+
+/* Page header */
+.page-header { margin-bottom:32px; }
+.page-title {
+  font-size:30px; font-weight:800; letter-spacing:-0.8px;
+  color:var(--text-heading); display:flex; align-items:center; gap:12px;
+  line-height:1.1;
+}
+.title-icon {
+  font-family:'Fira Code',monospace; color:var(--accent);
+  font-size:26px; text-shadow:0 0 20px var(--accent-glow);
+}
+.page-subtitle { color:var(--text-secondary); font-size:14px; margin-top:8px; line-height:1.6; }
+
+/* Input card */
+.input-card { padding:0; overflow:hidden; }
+
+.input-mode-tabs {
+  display:flex; border-bottom:1px solid var(--border);
+  background:var(--bg-elevated);
+}
+.mode-tab {
+  padding:13px 22px; font-size:13px; font-weight:700;
+  border:none; background:none; color:var(--text-muted);
+  cursor:pointer; border-bottom:2px solid transparent;
+  transition:all var(--t); font-family:'Outfit',sans-serif;
+  letter-spacing:0.2px;
+}
+.mode-tab:hover { color:var(--text-primary); }
+.mode-tab.active { color:var(--accent); border-bottom-color:var(--accent); background:var(--bg-surface); }
+
+.code-textarea {
+  width:100%; min-height:300px; padding:20px 22px;
+  background:var(--bg-base); border:none; outline:none;
+  resize:vertical; font-family:'Fira Code',monospace;
+  font-size:13.5px; line-height:1.8; color:var(--text-code);
+  tab-size:2; display:block;
+  transition:background var(--t), color var(--t);
+}
+.code-textarea::placeholder { color:var(--text-muted); opacity:0.5; }
+
+.file-upload-area { padding:24px; }
+.file-info { margin-top:10px; font-size:13px; color:var(--text-secondary); }
+
+.error-banner {
+  display:flex; align-items:center; gap:8px;
+  margin:0 20px 4px; padding:10px 14px;
+  background:var(--red-dim); border:1px solid rgba(248,113,113,0.2);
+  border-radius:var(--r-md); color:var(--red);
+  font-size:13px; font-weight:500; font-family:'Fira Code',monospace;
+}
+
+.input-actions {
+  display:flex; align-items:center; justify-content:flex-end; gap:10px;
+  padding:14px 20px; border-top:1px solid var(--border);
+  background:var(--bg-elevated);
+}
+
+/* Results */
+.results-section { margin-top:36px; display:flex; flex-direction:column; gap:16px; }
+.results-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.results-meta { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.results-actions { display:flex; gap:8px; }
+
+.share-banner {
+  padding:10px 16px; background:var(--accent-glow2);
+  border:1px solid rgba(0,212,255,0.15); border-radius:var(--r-md);
+  font-size:13px; color:var(--text-primary); word-break:break-all;
+  font-family:'Fira Code',monospace;
+}
+
+.summary-card { background:var(--bg-elevated); border-color:var(--border-bright); }
+.summary-text { font-size:14.5px; line-height:1.8; color:var(--text-secondary); }
+
+/* Result tabs */
+.result-tabs {
+  display:flex; gap:2px; border-bottom:1px solid var(--border);
+  overflow-x:auto;
+}
+.result-tab {
+  display:flex; align-items:center; gap:6px;
+  padding:10px 18px; font-size:13px; font-weight:700;
+  border:none; background:none; color:var(--text-muted);
+  cursor:pointer; border-bottom:2px solid transparent;
+  transition:all var(--t); font-family:'Outfit',sans-serif;
+  border-radius:var(--r-sm) var(--r-sm) 0 0;
+  margin-bottom:-1px; white-space:nowrap;
+}
+.result-tab:hover { color:var(--text-primary); background:var(--bg-elevated); }
+.result-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+.tab-count-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:18px; height:18px; padding:0 5px; border-radius:99px;
+  background:var(--red-dim); color:var(--red);
+  font-size:10px; font-weight:800; font-family:'Fira Code',monospace;
+}
+
+.tab-content { display:flex; flex-direction:column; gap:12px; padding-top:4px; }
+
+.before-after-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.before-after-grid > div {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ELI5 */
+.eli5-card { background:var(--bg-elevated); }
+.eli5-header {
+  display:flex; align-items:flex-start; gap:16px;
+  margin-bottom:18px; padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.eli5-emoji { font-size:36px; line-height:1; flex-shrink:0; }
+.eli5-header h3 { font-size:17px; font-weight:700; margin-bottom:4px; }
+.eli5-text { font-size:15px; line-height:1.85; color:var(--text-secondary); white-space:pre-wrap; }
+
+@media (max-width:768px) {
+  .page-title { font-size:22px; }
+  .before-after-grid { grid-template-columns:1fr; }
+  .result-tab { padding:8px 12px; font-size:12px; }
+}
+@media (max-width:480px) {
+  .input-actions { flex-direction:column; align-items:stretch; }
+  .input-actions .btn { justify-content:center; }
+}
+
+/* ── Extra Responsive Fixes ── */
+@media (max-width:768px) {
+  .page-container { padding:20px 14px; }
+  .input-card { border-radius:var(--r-md); }
+  .code-textarea { min-height:220px; font-size:12.5px; padding:14px 16px; }
+  .results-section { margin-top:24px; gap:12px; }
+  .result-tabs { gap:0; }
+  .result-tab { padding:8px 10px; font-size:11.5px; }
+  .summary-text { font-size:13.5px; }
+  .eli5-text { font-size:14px; }
+}
+@media (max-width:480px) {
+  .page-title { font-size:20px; gap:8px; }
+  .title-icon { font-size:20px; }
+  .mode-tab { padding:10px 14px; font-size:12px; }
+  .results-header { flex-direction:column; align-items:flex-start; }
+  .before-after-grid { gap:12px; }
+}
+
+/* ── Extra Responsive Fixes ── */
+@media (max-width:600px) {
+  .page-title { font-size:20px; gap:8px; }
+  .title-icon { font-size:20px; }
+  .code-textarea { min-height:220px; font-size:12.5px; padding:14px 16px; }
+  .mode-tab { padding:10px 14px; font-size:12px; }
+  .input-actions { padding:12px 14px; }
+  .results-section { margin-top:24px; }
+  .result-tab { padding:8px 10px; font-size:11px; }
+  .eli5-text { font-size:14px; }
+  .score-card { flex-direction:column; align-items:flex-start; gap:12px; padding:16px; }
+}
+
+@media (max-width: 768px) {
+  .before-after-grid {
+    grid-template-columns: 1fr;
+  }
+}

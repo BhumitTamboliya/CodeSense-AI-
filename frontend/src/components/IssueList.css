@@ -1,0 +1,41 @@
+.issue-list { border-radius:var(--r-md); border:1px solid var(--border); overflow:hidden; }
+.issue-list-header {
+  width:100%; display:flex; align-items:center; gap:10px;
+  padding:11px 16px; background:var(--bg-elevated);
+  border:none; cursor:pointer; text-align:left;
+  transition:background var(--t); font-family:'Syne',sans-serif;
+  color:var(--text-primary);
+}
+.issue-list-header:hover { background:var(--bg-overlay); }
+.issue-icon { font-size:15px; }
+.issue-label { font-size:13px; font-weight:700; flex:1; letter-spacing:0.1px; }
+.issue-count {
+  font-size:11px; font-weight:800; padding:2px 8px;
+  border-radius:99px; font-family:'Geist Mono',monospace;
+}
+.issue-list-red    .issue-count:not(.count-zero) { background:var(--red-dim);    color:var(--red); }
+.issue-list-orange .issue-count:not(.count-zero) { background:var(--yellow-dim); color:var(--yellow); }
+.issue-list-blue   .issue-count:not(.count-zero) { background:var(--accent-glow2); color:var(--accent); }
+.count-zero { background:var(--green-dim); color:var(--green); }
+.issue-chevron { font-size:9px; color:var(--text-muted); }
+.issue-body { background:var(--bg-surface); animation:fadeIn 0.2s ease; }
+.issue-empty {
+  display:flex; align-items:center; gap:8px;
+  padding:14px 16px; font-size:13px; color:var(--green); font-weight:600;
+  font-family:'Geist Mono',monospace;
+}
+.issue-items { list-style:none; padding:6px 0; }
+.issue-item {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:9px 16px; font-size:13.5px; line-height:1.6;
+  color:var(--text-primary); border-bottom:1px solid var(--border);
+  transition:background var(--t);
+}
+.issue-item:last-child { border-bottom:none; }
+.issue-item:hover { background:var(--bg-elevated); }
+.issue-bullet {
+  width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:8px;
+}
+.issue-list-red    .issue-bullet { background:var(--red); }
+.issue-list-orange .issue-bullet { background:var(--yellow); }
+.issue-list-blue   .issue-bullet { background:var(--accent); }

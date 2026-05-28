@@ -1,0 +1,47 @@
+.code-block { border-radius:var(--r-md); border:1px solid var(--border); overflow:hidden; background:var(--bg-base); }
+.code-block-header {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 14px; background:var(--bg-elevated);
+  border-bottom:1px solid var(--border);
+}
+.code-block-dots { display:flex; gap:6px; }
+.code-block-dots .dot { width:11px; height:11px; border-radius:50%; }
+.dot.red    { background:#ff5f56; }
+.dot.yellow { background:#ffbd2e; }
+.dot.green  { background:#27c93f; }
+.code-block-label {
+  font-size:12px; font-weight:600; color:var(--text-muted);
+  font-family:'Fira Code',monospace; flex:1;
+}
+.code-block-lang {
+  font-size:10px; font-weight:700; color:var(--accent);
+  background:var(--accent-glow2); padding:2px 8px;
+  border-radius:99px; text-transform:uppercase; letter-spacing:0.8px;
+  margin-left:auto; border:1px solid rgba(0,212,255,0.15);
+  font-family:'Fira Code',monospace;
+}
+.code-copy-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 10px; border-radius:var(--r-sm);
+  background:var(--bg-overlay); border:1px solid var(--border-bright);
+  color:var(--text-muted); font-size:12px; font-weight:600;
+  cursor:pointer; transition:all var(--t); margin-left:auto;
+  font-family:'Outfit',sans-serif;
+}
+.code-copy-btn:hover { background:var(--bg-base); color:var(--text-primary); border-color:var(--accent); }
+.code-copy-btn.copied { background:var(--green-dim); border-color:rgba(34,197,94,0.2); color:var(--green); }
+.code-block-content {
+  padding: 18px 20px;
+  overflow-x: auto;
+  overflow-y: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text-code);
+  white-space: pre;
+  tab-size: 2;
+  max-height: 400px;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+.code-block-content code { font-family:inherit; color:inherit; }

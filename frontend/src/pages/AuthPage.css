@@ -1,0 +1,419 @@
+/* =============================================
+   Auth Pages — Login & Signup
+   Premium dark design with glow effects
+   ============================================= */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+/* Glow orbs in background */
+.auth-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.auth-orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.auth-orb-2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%);
+  bottom: -80px; right: -80px;
+  animation: orbFloat 10s ease-in-out infinite reverse;
+}
+
+@keyframes orbFloat {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(20px,-20px) scale(1.05); }
+  66%      { transform: translate(-15px,15px) scale(0.97); }
+}
+
+/* Auth Card */
+.auth-card {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 420px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.03), var(--shadow-lg);
+}
+
+[data-theme='dark'] .auth-card {
+  background: rgba(15,15,15,0.95);
+  box-shadow: 0 0 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* Logo */
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  justify-content: center;
+}
+.auth-logo-icon {
+  font-family: 'Fira Code', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 20px var(--accent-glow);
+  letter-spacing: -2px;
+}
+.auth-logo-text {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.3px;
+}
+.auth-logo-text span { color: var(--accent); }
+
+/* Header */
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.auth-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-family: 'Fira Code', monospace;
+}
+
+.auth-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  pointer-events: none;
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--r-md);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: 'Fira Code', monospace;
+  outline: none;
+  transition: border-color var(--t), background var(--t), box-shadow var(--t);
+}
+.auth-input::placeholder {
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+}
+.auth-input:focus {
+  border-color: var(--accent);
+  background: var(--bg-overlay);
+  box-shadow: 0 0 0 3px var(--accent-glow2), 0 0 20px var(--accent-glow2);
+}
+.has-error .auth-input {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--red-dim);
+}
+
+.auth-error {
+  font-size: 12px;
+  color: var(--red);
+  font-family: 'Fira Code', monospace;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.auth-error::before { content: '!'; font-weight: 800; }
+
+/* Password strength */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.strength-bars {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.strength-bar {
+  height: 3px;
+  flex: 1;
+  border-radius: 99px;
+  transition: background 0.3s ease;
+}
+.strength-label {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  min-width: 40px;
+  text-align: right;
+  transition: color 0.3s ease;
+}
+
+/* Submit button */
+.auth-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 13px;
+  font-size: 15px;
+  border-radius: var(--r-md);
+  letter-spacing: 0.3px;
+}
+
+/* Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: 'Fira Code', monospace;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-bright);
+}
+
+/* Demo button */
+.auth-demo-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  border-radius: var(--r-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.auth-demo-btn:hover {
+  background: var(--bg-overlay);
+  color: var(--text-primary);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow2);
+}
+
+/* Footer */
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.auth-link {
+  color: var(--accent);
+  font-weight: 600;
+  transition: color var(--t);
+}
+.auth-link:hover { color: var(--accent-2); }
+
+@media (max-width: 480px) {
+  .auth-card { padding: 28px 20px; }
+  .auth-title { font-size: 20px; }
+}
+
+/* ── Extra Responsive Fixes ── */
+@media (max-width:480px) {
+  .auth-card { padding:24px 18px; border-radius:16px; }
+  .auth-title { font-size:20px; }
+  .auth-input { font-size:13px; }
+  .auth-submit { font-size:14px; }
+}
+
+/* ── Extra Polish ── */
+@media (max-width:380px) {
+  .auth-card { padding:24px 16px; }
+  .auth-title { font-size:20px; }
+  .auth-submit { padding:12px; }
+}
+
+/* ── Step Indicator ── */
+.auth-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.auth-steps::before {
+  content: '';
+  position: absolute;
+  top: 15px; left: 15%; right: 15%;
+  height: 1px;
+  background: var(--border-bright);
+  z-index: 0;
+}
+
+.auth-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  z-index: 1;
+}
+
+.auth-step-dot {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 2px solid var(--border-bright);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800;
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+}
+
+.auth-step.active .auth-step-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.auth-step.done .auth-step-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.auth-step-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Fira Code', monospace;
+  transition: color 0.3s ease;
+}
+
+.auth-step.active .auth-step-label { color: var(--accent); }
+.auth-step.done  .auth-step-label  { color: var(--green); }
+
+/* OTP Input */
+.otp-input {
+  letter-spacing: 8px;
+  font-size: 22px !important;
+  text-align: center;
+  font-weight: 800;
+}
+
+/* Resend */
+.auth-resend {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.auth-resend-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: color var(--t);
+}
+.auth-resend-btn:hover { color: var(--accent-2); }
+
+/* Back button */
+.auth-back-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: 'Outfit', sans-serif;
+}
+.auth-back-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* Error banner */
+.auth-error-banner {
+  padding: 10px 14px;
+  background: var(--red-dim);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: var(--r-md);
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 8px;
+}

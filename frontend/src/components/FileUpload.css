@@ -1,0 +1,23 @@
+.file-upload {
+  border:2px dashed var(--border-bright); border-radius:var(--r-md);
+  padding:24px; cursor:pointer; transition:all var(--t);
+  background:var(--bg-elevated); text-align:center;
+}
+.file-upload:hover, .file-upload.dragging {
+  border-color:var(--accent); background:var(--accent-glow2);
+  box-shadow:0 0 30px var(--accent-glow2);
+}
+.file-upload.has-file { border-style:solid; border-color:var(--green); background:var(--green-dim); }
+.file-placeholder { display:flex; flex-direction:column; gap:5px; align-items:center; }
+.upload-icon { font-size:26px; margin-bottom:6px; opacity:0.6; }
+.upload-label { font-size:14px; font-weight:700; color:var(--text-primary); }
+.upload-hint { font-size:12px; color:var(--text-muted); }
+.upload-types { font-size:11px; color:var(--text-muted); font-family:'Geist Mono',monospace; margin-top:6px; letter-spacing:0.5px; }
+.file-selected { display:flex; align-items:center; gap:10px; justify-content:center; flex-wrap:wrap; }
+.file-icon { font-size:20px; }
+.file-name { font-size:13px; font-weight:700; color:var(--green); font-family:'Geist Mono',monospace; word-break:break-all; }
+.file-clear {
+  background:none; border:none; color:var(--text-muted); cursor:pointer;
+  font-size:13px; padding:2px 6px; border-radius:4px; transition:all var(--t); flex-shrink:0;
+}
+.file-clear:hover { color:var(--red); background:var(--red-dim); }

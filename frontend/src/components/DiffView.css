@@ -1,0 +1,258 @@
+.diff-view {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+/* Stats bar */
+.diff-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.diff-lang {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Fira Code', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: var(--accent-glow2);
+  padding: 2px 10px;
+  border-radius: 99px;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.diff-stat-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.diff-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-family: 'Fira Code', monospace;
+}
+
+.diff-badge.added {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.diff-badge.removed {
+  background: var(--red-dim);
+  color: var(--red);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.diff-badge.same {
+  background: var(--bg-overlay);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* ── Desktop: side by side ── */
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.diff-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+
+.diff-header.left {
+  border-right: 1px solid var(--border);
+}
+
+.diff-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.diff-dot.red {
+  background: #ff5f57;
+}
+
+.diff-dot.yellow {
+  background: #febc2e;
+}
+
+.diff-dot.green {
+  background: #28c840;
+}
+
+.diff-header-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+  margin-left: 4px;
+}
+
+.diff-panel {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 320px;
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.diff-panel::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
+.diff-panel.left-panel {
+  border-right: 1px solid var(--border);
+}
+
+/* Lines */
+.diff-line {
+  display: flex;
+  align-items: flex-start;
+  min-height: 24px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.diff-line.line-removed {
+  background: rgba(248, 113, 113, 0.08);
+  border-left: 3px solid var(--red);
+}
+
+.diff-line.line-added {
+  background: rgba(34, 197, 94, 0.08);
+  border-left: 3px solid var(--green);
+}
+
+.diff-line.line-empty {
+  background: transparent;
+  border-left: 3px solid transparent;
+}
+
+.diff-line-num {
+  min-width: 36px;
+  padding: 0 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  text-align: right;
+  user-select: none;
+  flex-shrink: 0;
+  opacity: 0.5;
+  border-right: 1px solid var(--border);
+  margin-right: 8px;
+}
+
+.diff-line-sign {
+  width: 14px;
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.line-removed .diff-line-sign {
+  color: var(--red);
+}
+
+.line-added .diff-line-sign {
+  color: var(--green);
+}
+
+
+.diff-line-code {
+  flex: 1;
+  padding: 0 8px 0 0;
+  color: var(--text-code);
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.line-removed .diff-line-code {
+  color: var(--red);
+  opacity: 0.9;
+}
+
+.line-added .diff-line-code {
+  color: var(--green);
+  opacity: 0.9;
+}
+
+.diff-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+}
+
+/* ── Mobile/Tablet: upar neeche ── */
+@media (max-width: 768px) {
+  .diff-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .diff-header.left {
+    border-right: none;
+  }
+
+  .diff-panel.left-panel {
+    border-right: none;
+    border-right: 2px solid var(--border-bright);
+    max-height: 260px;
+  }
+
+  .diff-panel {
+    max-height: 260px;
+  }
+
+  .diff-header.fixed-header {
+    margin-top: 0;
+  }
+}
+
+.diff-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: var(--r-sm);
+  background: var(--bg-overlay);
+  border: 1px solid var(--border-bright);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: 'Outfit', sans-serif;
+}
+
+.diff-copy-btn:hover {
+  background: var(--green-dim);
+  color: var(--green);
+  border-color: rgba(34, 197, 94, 0.2);
+}
