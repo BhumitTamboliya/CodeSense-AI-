@@ -1,6 +1,6 @@
 # CodeSense AI 🧠⚡
 
-> AI-powered code reviewer built with React, Node/Express, MongoDB & Google Gemini
+> AI-powered code reviewer built with React, Node/Express, MongoDB & Groq Cloud (Llama 3.3)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -12,7 +12,7 @@
 | Feature | Description |
 |---------|-------------|
 | 📋 Code Paste Area | Large textarea to paste any code |
-| 🔍 Language Auto-Detect | Gemini automatically detects the programming language |
+| 🔍 Language Auto-Detect | AI automatically detects the programming language |
 | 🐛 Bug Detection | Finds all bugs and logical errors |
 | 💡 Fix Suggestions | Shows corrected, improved version of your code |
 | 📊 Quality Score | 0–100 rating with animated visual ring |
@@ -39,7 +39,7 @@
 | Frontend | React 18, React Router v6, CSS3 (no UI library) |
 | Backend | Node.js, Express.js |
 | Database | MongoDB + Mongoose |
-| AI | Google Gemini API (`gemini-1.5-flash`) |
+| AI | Groq API (`llama-3.3-70b-versatile`) |
 | File Upload | Multer (memory storage) |
 | Rate Limiting | express-rate-limit |
 | Fonts | JetBrains Mono + Inter (Google Fonts) |
@@ -52,7 +52,7 @@
 codesense-ai/
 ├── backend/
 │   ├── controllers/
-│   │   ├── aiService.js          # Gemini API integration
+│   │   ├── aiService.js          # Groq API integration
 │   │   ├── authController.js     # User authentication logic
 │   │   ├── compareController.js  # File comparison logic
 │   │   ├── historyController.js  # History CRUD
@@ -74,7 +74,7 @@ codesense-ai/
 │   │   ├── reviewRoutes.js
 │   │   └── shareRoutes.js
 │   ├── .env                      # Your secrets (not committed)
-│   ├── .env.example              # Template
+│   ├── .env.example              # Template (added)
 │   ├── package.json
 │   └── server.js
 │
@@ -90,6 +90,7 @@ codesense-ai/
 │   │   │   ├── LoadingOverlay.jsx + .css
 │   │   │   ├── Navbar.jsx + .css
 │   │   │   ├── ScoreCard.jsx + .css
+│   │   │   ├── ScrollReveal.jsx  # Smooth animations
 │   │   │   └── Toast.jsx + .css
 │   │   ├── pages/
 │   │   │   ├── AuthPage.css
@@ -101,6 +102,7 @@ codesense-ai/
 │   │   │   ├── SharedReviewPage.jsx + .css
 │   │   │   └── SignupPage.jsx
 │   │   ├── services/
+│   │   │   ├── AuthContext.js    # Auth state context
 │   │   │   ├── api.js            # All backend API calls
 │   │   │   └── ToastContext.js   # Global toast context
 │   │   ├── styles/
@@ -108,8 +110,8 @@ codesense-ai/
 │   │   ├── App.jsx
 │   │   └── index.js
 │   ├── .env
-│   ├── .env.example
-│   └── package.json
+│   ├── .env.example              # Template (added)
+│   ├── package.json
 │
 ├── .gitignore
 └── README.md
@@ -122,7 +124,8 @@ codesense-ai/
 ### Prerequisites
 - Node.js v18+
 - MongoDB (local or Atlas)
-- Google Gemini API key — free at [aistudio.google.com](https://aistudio.google.com/app/apikey)
+- Groq API key — free at [console.groq.com](https://console.groq.com)
+- Gmail account with an App Password (if utilizing OTP email verification)
 
 ---
 
@@ -143,14 +146,17 @@ npm install
 cp .env.example .env
 ```
 
-Edit `backend/.env`:
+Edit `backend/.env` with your credentials:
 ```env
 PORT=5000
 NODE_ENV=development
-GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 MONGODB_URI=mongodb://localhost:27017/codesense-ai
+JWT_SECRET=your_jwt_secret_here
 FRONTEND_URL=http://localhost:3000
 BASE_URL=http://localhost:5000
+EMAIL_USER=your_email_address_here
+EMAIL_PASS=your_email_app_password_here
 ```
 
 Start the backend:
@@ -218,28 +224,28 @@ Frontend runs on → `http://localhost:3000`
 
 ### Backend → Render
 
-1. Push code to GitHub
-2. Create a new **Web Service** on [render.com](https://render.com)
+1. Push code to GitHub.
+2. Create a new **Web Service** on [render.com](https://render.com).
 3. Set:
    - **Build Command:** `npm install`
    - **Start Command:** `node server.js`
-4. Add all environment variables from `.env.example`
-5. Deploy
+4. Add all environment variables from `backend/.env.example` (`GROQ_API_KEY`, `MONGODB_URI`, `JWT_SECRET`, `EMAIL_USER`, `EMAIL_PASS`, etc.).
+5. Deploy.
 
 ### Frontend → Vercel
 
-1. Import your GitHub repo on [vercel.com](https://vercel.com)
-2. Set root directory to `frontend`
+1. Import your GitHub repo on [vercel.com](https://vercel.com).
+2. Set root directory to `frontend`.
 3. Add environment variable:
    - `REACT_APP_API_URL` = your Render backend URL (e.g. `https://codesense-ai.onrender.com`)
-4. Deploy
+4. Deploy.
 
 ---
 
 ## 🔑 Notes
 
-- **MongoDB is optional** for Phase 1 — the AI review works without it. History and share links require MongoDB.
-- **Rate limiting:** 20 AI review requests per 15 minutes per IP.
+- **MongoDB connectivity is optional** for basic code reviews — review logic degrades gracefully and works without it. History, authentication, and share links require a MongoDB connection.
+- **Rate limiting:** 20 AI review requests per 15 minutes per IP (protects Groq API credits).
 - **File size limit:** 5MB per file upload.
 - **Max code length:** 50,000 characters for paste, 30,000 characters per file for comparison.
 
