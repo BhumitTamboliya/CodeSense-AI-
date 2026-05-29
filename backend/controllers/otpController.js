@@ -9,9 +9,10 @@ const crypto = require('crypto');
 // In-memory OTP store — { email: { otp, expiresAt } }
 const otpStore = new Map();
 
-// Gmail transporter
+// Gmail transporter — IPv4 force kiya hai Render ke liye
 const transporter = nodemailer.createTransport({
   service: 'gmail',
+  family: 4,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
